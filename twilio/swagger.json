@@ -1,0 +1,104 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Twilio API",
+        "description": "Twilio REST API",
+        "version": "1.0.0"
+    },
+    "host": "api.twilio.com",
+    "schemes": [
+        "https"
+    ],
+    "basePath": "/2010-04-01",
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/x-www-form-urlencoded"
+    ],
+    "securityDefinitions": {
+        "basicAuth": {
+            "type": "basic"
+        }
+    },
+    "paths": {
+        "/Accounts/{AccountSid}/Messages.json": {
+            "post": {
+                "summary": "Send a new outgoing message",
+                "parameters": [
+                    {
+                        "name": "AccountSid",
+                        "in": "path",
+                        "description": "The application SID",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "To",
+                        "in": "formData",
+                        "description": "The destination phone number",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "From",
+                        "in": "formData",
+                        "description": "A Twilio phone number (in E.164 format) or alphanumeric sender ID enabled for the type of message you wish to send",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Body",
+                        "in": "formData",
+                        "description": "The text of the message you want to send, limited to 1600 characters",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Messaging"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Error": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "detail": {
+                    "type": "string"
+                },
+                "more_info": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        }
+    }
+}
