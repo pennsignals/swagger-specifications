@@ -1,0 +1,24 @@
+{
+  "name": "swagger-specifications",
+  "version": "1.0.0",
+  "description": "A collection of Swagger specifications utilized by Penn Signals",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pennsignals/swagger-specifications.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pennsignals/swagger-specifications/issues"
+  },
+  "homepage": "https://github.com/pennsignals/swagger-specifications#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "globby": "^6.1.0",
+    "swagger-parser": "^3.4.1"
+  }
+}
