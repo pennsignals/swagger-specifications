@@ -1,4 +1,0 @@
-web:
-  image: pennsignals/swagger-twilio
-  ports:
-    - "80"
