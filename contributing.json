@@ -36,5 +36,11 @@
     "body_must_include_reproduction_steps": ["bug"],
 
     "label_must_be_set": true
+  },
+  "branch": {
+    "name_must_include_prefix": {
+        "prefixes": ["feature"],
+        "require_after_prefix": "/"
+    }
   }
 }
