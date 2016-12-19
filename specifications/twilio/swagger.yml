@@ -100,6 +100,46 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
+  '/Accounts/{AccountSid}/Calls':
+    post:
+      summary: Using the Twilio REST API, you can make outgoing calls to phones, SIP-enabled endpoints and Twilio Client connections.
+      parameters:
+        - name: AccountSid
+          in: path
+          description: The application SID
+          required: true
+          type: string
+        - name: From
+          in: formData
+          description: The phone number or client identifier to use as the caller id
+          required: true
+          type: string
+        - name: To
+          in: formData
+          description: The phone number, SIP address or client identifier to call
+          required: true
+          type: string
+        - name: Url
+          in: formData
+          description: The fully qualified URL that should be consulted when the call connects
+          required: true
+          type: string
+        - name: ApplicationSid
+          in: formData
+          description: The 34 character sid of the application Twilio should use to handle this phone call
+          required: false
+          type: string
+      tags:
+        - Calls
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Successful operation
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
 definitions:
   Error:
     type: object
