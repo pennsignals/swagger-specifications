@@ -1,0 +1,109 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Clinstream API",
+        "description": "Clinstream REST API",
+        "version": "1.0.0"
+    },
+    "host": "secureapps.uphs.upenn.edu",
+    "schemes": [
+        "https"
+    ],
+    "basePath": "/ClinAPI/api",
+    "consumes": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "basicAuth": {
+            "type": "basic"
+        }
+    },
+    "paths": {
+        "/Patient/GetDemographics": {
+            "post": {
+                "summary": "Send a new outgoing message",
+                "parameters": [
+                    {
+                        "name": "CalledBy",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Department",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Facility",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ProviderId",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ServiceName",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "UID",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Patient"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Error": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "detail": {
+                    "type": "string"
+                },
+                "more_info": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        }
+    }
+}
