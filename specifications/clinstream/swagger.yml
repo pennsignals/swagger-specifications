@@ -15,7 +15,7 @@ securityDefinitions:
 paths:
   /Patient/GetDemographics:
     post:
-      summary: Send a new outgoing message
+      summary: Get demographics
       parameters:
         - name: CalledBy
           in: formData
@@ -50,21 +50,3 @@ paths:
           description: Successful operation
         default:
           description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
-definitions:
-  Error:
-    type: object
-    properties:
-      status:
-        type: integer
-        format: int32
-      message:
-        type: string
-      detail:
-        type: string
-      more_info:
-        type: string
-      code:
-        type: integer
-        format: int32
