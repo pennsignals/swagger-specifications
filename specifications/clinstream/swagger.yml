@@ -48,5 +48,131 @@ paths:
       responses:
         '200':
           description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Demographic'
         default:
           description: Unexpected error
+definitions:
+  Demographic:
+    type: object
+    properties:
+      AdmitHeightM:
+        type: string
+      AdmitReason:
+        type: string
+      AdmitSourceCode:
+        type: string
+      AdmitSourceName:
+        type: string
+      AdmitType:
+        type: string
+      AdmitWeightKG:
+        type: string
+      AdmittingName:
+        type: string
+      AdmittingPennID:
+        type: string
+      AttendingName:
+        type: string
+      AttendingPennID:
+        type: string
+      CSN:
+        type: string
+      CentralLineCount:
+        type: string
+      CentralLineDetail:
+        type: string
+      CoveringCellNumber:
+        type: string
+      CoveringName:
+        type: string
+      CoveringNurseCellNumber:
+        type: string
+      CoveringNurseName:
+        type: string
+      CoveringNursePagerNumber:
+        type: string
+      CoveringNursePennID:
+        type: string
+      CoveringPagerNumber:
+        type: string
+      CoveringPennID:
+        type: string
+      DOB:
+        type: string
+      EpicHAR:
+        type: string
+      Facility:
+        type: string
+      FirstName:
+        type: string
+      FoleyDate:
+        type: string
+      FoleyKBCDtime:
+        type: string
+      FoleyLatestIndicationDtm:
+        type: string
+      FoleyOrderDtime:
+        type: string
+      FoleyPendingRemoval:
+        type: string
+      FoleyReason:
+        type: string
+      FoleyRemovalGuidance:
+        type: string
+      HUPMRN:
+        type: string
+      HospitalService:
+        type: string
+      LastName:
+        type: string
+      LastUpdateDtime:
+        type: string
+      Loc_Dept:
+        type: string
+      Loc_Room_bed:
+        type: string
+      MVPatientID:
+        type: string
+      MiddleName:
+        type: string
+      NameSuffix:
+        type: string
+      Nav_Location:
+        type: string
+      Nav_Room_bed:
+        type: string
+      PAHMRN:
+        type: string
+      PCPName:
+        type: string
+      PCPPennID:
+        type: string
+      PMCMRN:
+        type: string
+      PrimaryCellNumber:
+        type: string
+      PrimaryName:
+        type: string
+      PrimaryPagerNumber:
+        type: string
+      PrimaryPennID:
+        type: string
+      Race:
+        type: string
+      ReferringName:
+        type: string
+      ReferringPennID:
+        type: string
+      ServiceName:
+        type: string
+      Sex:
+        type: string
+      UID:
+        type: string
+      VisitStartDTime:
+        type: string
+      maritalStatus:
+        type: string
