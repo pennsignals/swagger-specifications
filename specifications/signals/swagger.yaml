@@ -1,44 +1,62 @@
 swagger: '2.0'
-
 info:
   title: Signals API
   description: Signals REST API
   version: 2.0.0
 schemes:
   - https
-basePath: "/signals/v2.0.0/api"
+basePath: /signals/2.0.0/api
 consumes:
   - application/json
 produces:
   - application/json
 securityDefinitions:
-  certificate: # ???
-    crt: signals.crt
-    key: signals.key
+  # certificate: # ???
+    # crt: signals.crt
+    # key: signals.key
 paths:
+
   /event:
     get:
-      # Describe this verb here. Note: you can use markdown
       description: |
         Gets `Event` objects.
-      # This is array of GET operation parameters:
       parameters:
-        # An example parameter that is in query and is required
-        -
-          name: last_id
+        - name: last_id
           in: query
           description: Last event id
-          required: false
+          required: true
           type: number
           format: double
       responses:
-        # Response code
         200:
           description: Successful response
           schema:
             $ref: '#/definitions/EventResponse'
+
 definitions:
 
+  Location: # should this just be an extensible path? /???/fac/dept/room/bed/???
+    type: object
+    properties:
+      facility:
+        type: string
+      department:
+        type: string
+      room:
+        type: string
+      bed:
+        type: string
+      
+  Name:
+    type: object
+    properties:
+      first:
+        type: string
+      middle:
+        type: string
+      last:
+        type: string
+        
   EventResponse:
     type: object
     properties:
@@ -49,22 +67,82 @@ definitions:
           
   Event:
     type: object
+    discriminator: class_
     properties:
-      signals: # 2.0.0
-        type: string
+      signals:
+        type: string # 2.0.0
+        required: true
       uuid:
-        type: uuid
+        type: string
+        required: true
+      class_:
+        type: string
+        required: true
+      provenance:
+        type: array
+        items: string
+# ['https://clinapi/prod/v1.0.0/api/GetDemographics', 'clinstream-mux', 'mm-filter', 'mm-transform', 'mm-predict', 'notify', 'https://signals/prod/v2.0.0/api/event'] # NotifyEvent
+        required: true
+      transaction_on:
+        type: date-time
+        required: true
+      valid_on:
+        type: date-time
       status:
         type: enum
-      provenance:
-        type: string # '/.../.../.../signals.v2.0.0.api'
-      transation_on:
-        type: intger
-        format: time-millis
-      valid_on:
-        type: integer
-        format: time-millis
         
-  Observation:
+  PatientEvent:
     type: object
+    allOf:
+      - $ref: '#definitions/Event'
+      - properties:
+          patient_id:
+            type: string
+            required: true
         
+  PatientCareteamEvent:
+    type: object
+    allOf:
+      - $ref: '#definitions/PatientEvent'
+      - properties:
+          role:
+            type: string
+            enum:
+              - Admitting
+              - Attending
+              - CoveringNurse
+              - CoveringProvider
+              - PrimaryCare
+            required: true
+          name:
+            type:
+              $ref: '#definitions/Name'
+            required: true
+          careteam_id:
+            type: string
+            required: true
+        
+  PatientLocationEvent:
+    type: object
+    allOf:
+      - $ref: '#definitions/PatientEvent'
+      - properties:
+          location:
+            type:
+              $ref: '#definitions/Location'
+            required: true
+        
+  PatientObservationEvent:
+    type: object
+    allOf:
+      - $ref: '#definitions/PatientEvent'
+      - properties:
+          status:
+            type: string
+            enum: []
+            required: true
+          units:
+            type: string
+            enum: []
+            required: true
+
