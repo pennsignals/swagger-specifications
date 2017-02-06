@@ -94,7 +94,7 @@ definitions:
   PatientEvent:
     type: object
     allOf:
-      - $ref: '#definitions/Event'
+      - $ref: '#/definitions/Event'
       - properties:
           patient_id:
             type: string
@@ -103,7 +103,7 @@ definitions:
   PatientCareteamEvent:
     type: object
     allOf:
-      - $ref: '#definitions/PatientEvent'
+      - $ref: '#/definitions/PatientEvent'
       - properties:
           role:
             type: string
@@ -116,7 +116,7 @@ definitions:
             required: true
           name:
             type:
-              $ref: '#definitions/Name'
+              $ref: '#/definitions/Name'
             required: true
           careteam_id:
             type: string
@@ -125,17 +125,17 @@ definitions:
   PatientLocationEvent:
     type: object
     allOf:
-      - $ref: '#definitions/PatientEvent'
+      - $ref: '#/definitions/PatientEvent'
       - properties:
           location:
             type:
-              $ref: '#definitions/Location'
+              $ref: '#/definitions/Location'
             required: true
         
   PatientObservationEvent:
     type: object
     allOf:
-      - $ref: '#definitions/PatientEvent'
+      - $ref: '#/definitions/PatientEvent'
       - properties:
           status:
             type: string
