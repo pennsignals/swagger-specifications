@@ -71,21 +71,16 @@ definitions:
     properties:
       signals:
         type: string # 2.0.0
-        required: true
       uuid:
         type: string
-        required: true
       class_:
         type: string
-        required: true
       provenance:
         type: array
         items: string
 # ['https://clinapi/prod/v1.0.0/api/GetDemographics', 'clinstream-mux', 'mm-filter', 'mm-transform', 'mm-predict', 'notify', 'https://signals/prod/v2.0.0/api/event'] # NotifyEvent
-        required: true
       transaction_on:
         type: date-time
-        required: true
       valid_on:
         type: date-time
       status:
@@ -98,7 +93,6 @@ definitions:
       - properties:
           patient_id:
             type: string
-            required: true
         
   PatientCareteamEvent:
     type: object
@@ -113,14 +107,11 @@ definitions:
               - CoveringNurse
               - CoveringProvider
               - PrimaryCare
-            required: true
           name:
             type:
               $ref: '#/definitions/Name'
-            required: true
           careteam_id:
             type: string
-            required: true
         
   PatientLocationEvent:
     type: object
@@ -130,7 +121,6 @@ definitions:
           location:
             type:
               $ref: '#/definitions/Location'
-            required: true
         
   PatientObservationEvent:
     type: object
@@ -140,9 +130,7 @@ definitions:
           status:
             type: string
             enum: []
-            required: true
           units:
             type: string
             enum: []
-            required: true
 
