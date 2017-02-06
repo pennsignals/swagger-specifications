@@ -1,0 +1,70 @@
+swagger: '2.0'
+
+info:
+  title: Signals API
+  description: Signals REST API
+  version: 2.0.0
+schemes:
+  - https
+basePath: "/signals/v2.0.0/api"
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  certificate: # ???
+    crt: signals.crt
+    key: signals.key
+paths:
+  /event:
+    get:
+      # Describe this verb here. Note: you can use markdown
+      description: |
+        Gets `Event` objects.
+      # This is array of GET operation parameters:
+      parameters:
+        # An example parameter that is in query and is required
+        -
+          name: last_id
+          in: query
+          description: Last event id
+          required: false
+          type: number
+          format: double
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/EventResponse'
+definitions:
+
+  EventResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Event'
+          
+  Event:
+    type: object
+    properties:
+      signals: # 2.0.0
+        type: string
+      uuid:
+        type: uuid
+      status:
+        type: enum
+      provenance:
+        type: string # '/.../.../.../signals.v2.0.0.api'
+      transation_on:
+        type: intger
+        format: time-millis
+      valid_on:
+        type: integer
+        format: time-millis
+        
+  Observation:
+    type: object
+        
