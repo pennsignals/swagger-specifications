@@ -83,6 +83,51 @@ paths:
           description: Successful operation
           schema:
             $ref: '#/definitions/GetMedTasksResponse'
+  /Labs/GetLabs:
+    post:
+      summary: Get labs
+      parameters:
+        - name: CalledBy
+          in: formData
+          required: true
+          type: string
+        - name: Department
+          in: formData
+          required: false
+          type: string
+        - name: Facility
+          in: formData
+          required: false
+          type: string
+        - name: FromDate
+          in: formData
+          required: false
+          type: string
+        - name: ProviderId
+          in: formData
+          required: false
+          type: string
+        - name: ServiceName
+          in: formData
+          required: false
+          type: string
+        - name: ToDate
+          in: formData
+          required: false
+          type: string
+        - name: UID
+          in: formData
+          required: false
+          type: string
+      tags:
+        - Labs
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/GetLabsResponse'
 definitions:
   Medication:
     type: object
@@ -274,6 +319,59 @@ definitions:
         type: string
       maritalStatus:
         type: string
+  Lab:
+    type: object
+    properties:
+      UID:
+        type: string
+      MVServiceTypeID:
+        type: string
+      CernerServiceTypeID:
+        type: string
+      ServiceTypeMnemonic:
+        type: string
+      PlacerOrderID:
+        type: string
+      CernerOrderID:
+        type: string
+      AccessionNumber:
+        type: string
+      DiagServiceID:
+        type: string
+      OrderDate:
+        type: string
+      DrawnDate:
+        type: string
+      OrderLastUpdate:
+        type: string
+      EffectiveOrderDtime:
+        type: string
+      EffectiveStatus:
+        type: string
+      CernerObsTypeID:
+        type: string
+      ObsTypeMnemonic:
+        type: string
+      UnitsID:
+        type: string
+      Units:
+        type: string
+      RangeID:
+        type: string
+      Range:
+        type: string
+      AbnormalFlag:
+        type: string
+      ResultStatus:
+        type: string
+      Value:
+        type: string
+      Corrected:
+        type: string
+      ResultDate:
+        type: string
+      ObsLastUpdate:
+        type: string
   GetDemographicsResponse:
     type: object
     properties:
@@ -288,3 +386,10 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Medication'
+  GetLabsResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Lab'
