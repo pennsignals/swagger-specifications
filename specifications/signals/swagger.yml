@@ -1,0 +1,136 @@
+swagger: '2.0'
+info:
+  title: Signals API
+  description: Signals REST API
+  version: 2.0.0
+schemes:
+  - https
+basePath: /signals/2.0.0/api
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  # certificate: # ???
+    # crt: signals.crt
+    # key: signals.key
+paths:
+
+  /event:
+    get:
+      description: |
+        Gets `Event` objects.
+      parameters:
+        - name: last_id
+          in: query
+          description: Last event id
+          required: true
+          type: number
+          format: double
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/EventResponse'
+
+definitions:
+
+  Location: # should this just be an extensible path? /???/fac/dept/room/bed/???
+    type: object
+    properties:
+      facility:
+        type: string
+      department:
+        type: string
+      room:
+        type: string
+      bed:
+        type: string
+      
+  Name:
+    type: object
+    properties:
+      first:
+        type: string
+      middle:
+        type: string
+      last:
+        type: string
+        
+  EventResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Event'
+          
+  Event:
+    type: object
+    discriminator: class_
+    properties:
+      signals:
+        type: string # 2.0.0
+      uuid:
+        type: string
+      class_:
+        type: string
+      provenance:
+        type: array
+        items: string
+# ['https://clinapi/prod/v1.0.0/api/GetDemographics', 'clinstream-mux', 'mm-filter', 'mm-transform', 'mm-predict', 'notify', 'https://signals/prod/v2.0.0/api/event'] # NotifyEvent
+      transaction_on:
+        type: date-time
+      valid_on:
+        type: date-time
+      status:
+        type: enum
+        
+  PatientEvent:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Event'
+      - properties:
+          patient_id:
+            type: string
+        
+  PatientCareteamEvent:
+    type: object
+    allOf:
+      - $ref: '#/definitions/PatientEvent'
+      - properties:
+          role:
+            type: string
+            enum:
+              - Admitting
+              - Attending
+              - CoveringNurse
+              - CoveringProvider
+              - PrimaryCare
+          name:
+            type:
+              $ref: '#/definitions/Name'
+          careteam_id:
+            type: string
+        
+  PatientLocationEvent:
+    type: object
+    allOf:
+      - $ref: '#/definitions/PatientEvent'
+      - properties:
+          location:
+            type:
+              $ref: '#/definitions/Location'
+        
+  PatientObservationEvent:
+    type: object
+    allOf:
+      - $ref: '#/definitions/PatientEvent'
+      - properties:
+          status:
+            type: string
+            enum: []
+          units:
+            type: string
+            enum: []
+
