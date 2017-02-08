@@ -90,8 +90,8 @@
                     },
                     {
                         "name": "FromDate",
-                        "required": true,
                         "in": "formData",
+                        "required": true,
                         "type": "string"
                     },
                     {
@@ -197,6 +197,65 @@
                         "description": "Successful operation",
                         "schema": {
                             "$ref": "#/definitions/GetLabsResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/Orders/GetOrders": {
+            "post": {
+                "summary": "Get orders",
+                "parameters": [
+                    {
+                        "name": "CalledBy",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "FromDate",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "OrderName",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "OrderType",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ToDate",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "UID",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Orders"
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/GetOrdersResponse"
                         }
                     }
                 }
@@ -570,6 +629,107 @@
                 }
             }
         },
+        "Order": {
+            "type": "object",
+            "properties": {
+                "ClientGUID": {
+                    "type": "string"
+                },
+                "ChartGUID": {
+                    "type": "string"
+                },
+                "ClientVisitGUID": {
+                    "type": "string"
+                },
+                "Facility": {
+                    "type": "string"
+                },
+                "VisitType": {
+                    "type": "string"
+                },
+                "CareLevelCode": {
+                    "type": "string"
+                },
+                "Service": {
+                    "type": "string"
+                },
+                "UID": {
+                    "type": "string"
+                },
+                "MRN": {
+                    "type": "string"
+                },
+                "VisitIDCode": {
+                    "type": "string"
+                },
+                "AdmitDtm": {
+                    "type": "string"
+                },
+                "DischargeDtm": {
+                    "type": "string"
+                },
+                "CurrentLocation": {
+                    "type": "string"
+                },
+                "OrderingLocation": {
+                    "type": "string"
+                },
+                "OrderName": {
+                    "type": "string"
+                },
+                "OrderSetName": {
+                    "type": "string"
+                },
+                "OrderType": {
+                    "type": "string"
+                },
+                "OrderReviewCategory": {
+                    "type": "string"
+                },
+                "OrderPriorityCode": {
+                    "type": "string"
+                },
+                "OrderedDose": {
+                    "type": "string"
+                },
+                "OrderEnteredDtm": {
+                    "type": "string"
+                },
+                "OrderStartDtm": {
+                    "type": "string"
+                },
+                "OrderStopDtm": {
+                    "type": "string"
+                },
+                "OrderStatus": {
+                    "type": "string"
+                },
+                "OrderGUID": {
+                    "type": "string"
+                },
+                "OrderingProviderGUID": {
+                    "type": "string"
+                },
+                "OrderingProvider": {
+                    "type": "string"
+                },
+                "OrderRoleType": {
+                    "type": "string"
+                },
+                "Frequency": {
+                    "type": "string"
+                },
+                "MDCollect": {
+                    "type": "string"
+                },
+                "RNCollect": {
+                    "type": "string"
+                },
+                "PhlebCollect": {
+                    "type": "string"
+                }
+            }
+        },
         "GetDemographicsResponse": {
             "type": "object",
             "properties": {
@@ -599,6 +759,17 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/Lab"
+                    }
+                }
+            }
+        },
+        "GetOrdersResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Order"
                     }
                 }
             }
