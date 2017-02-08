@@ -165,6 +165,57 @@ paths:
           description: Successful operation
           schema:
             $ref: '#/definitions/GetOrdersResponse'
+  /Vitals/GetFlowsheetData:
+    post:
+      summary: Get flowsheet data
+      parameters:
+        - name: CalledBy
+          in: formData
+          required: true
+          type: string
+        - name: Department
+          in: formData
+          required: false
+          type: string
+        - name: Facility
+          in: formData
+          required: false
+          type: string
+        - name: Field
+          in: formData
+          required: false
+          type: string
+        - name: Flowsheet
+          in: formData
+          required: false
+          type: string
+        - name: FromDate
+          in: formData
+          required: false
+          type: string
+        - name: ProviderId
+          in: formData
+          required: false
+          type: string
+        - name: ServiceName
+          in: formData
+          required: false
+          type: string
+        - name: ToDate
+          in: formData
+          required: false
+          type: string
+        - name: UID
+          in: formData
+          required: false
+          type: string
+      tags:
+        - Vitals
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/GetFlowsheetDataResponse'
 definitions:
   Medication:
     type: object
@@ -476,6 +527,35 @@ definitions:
         type: string
       PhlebCollect:
         type: string
+  Flowsheet:
+    type: object
+    properties:
+      MVPatientID:
+        type: string
+      UID:
+        type: string
+      AccountNumber:
+        type: string
+      Flowsheet:
+        type: string
+      FlowsheetID:
+        type: string
+      FlowsheetDateTime:
+        type: string
+      MVComponentID:
+        type: string
+      ObservationDateTime:
+        type: string
+      Field:
+        type: string
+      Value:
+        type: string
+      Units:
+        type: string
+      Range:
+        type: string
+      AbnormalFlag:
+        type: string
   GetDemographicsResponse:
     type: object
     properties:
@@ -504,3 +584,10 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Order'
+  GetFlowsheetDataResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Flowsheet'
