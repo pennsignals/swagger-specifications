@@ -46,134 +46,548 @@ paths:
       security:
         - basicAuth: []
       responses:
-        200:
+        '200':
           description: Successful operation
           schema:
-            $ref: '#/definitions/Demographic'
+            $ref: '#/definitions/GetDemographicsResponse'
+  /Meds/GetMedTasks:
+    post:
+      summary: Get medications tasks
+      parameters:
+        - name: CalledBy
+          in: formData
+          required: true
+          type: string
+        - name: FromDate
+          in: formData
+          required: true
+          type: string
+        - name: ToDate
+          in: formData
+          required: true
+          type: string
+        - name: MedName
+          in: formData
+          required: false
+          type: string
+        - name: UID
+          in: formData
+          required: false
+          type: string
+      tags:
+        - Medications
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/GetMedTasksResponse'
+  /Labs/GetLabs:
+    post:
+      summary: Get labs
+      parameters:
+        - name: CalledBy
+          in: formData
+          required: true
+          type: string
+        - name: Department
+          in: formData
+          required: false
+          type: string
+        - name: Facility
+          in: formData
+          required: false
+          type: string
+        - name: FromDate
+          in: formData
+          required: false
+          type: string
+        - name: ProviderId
+          in: formData
+          required: false
+          type: string
+        - name: ServiceName
+          in: formData
+          required: false
+          type: string
+        - name: ToDate
+          in: formData
+          required: false
+          type: string
+        - name: UID
+          in: formData
+          required: false
+          type: string
+      tags:
+        - Labs
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/GetLabsResponse'
+  /Orders/GetOrders:
+    post:
+      summary: Get orders
+      parameters:
+        - name: CalledBy
+          in: formData
+          required: true
+          type: string
+        - name: FromDate
+          in: formData
+          required: true
+          type: string
+        - name: OrderName
+          in: formData
+          required: false
+          type: string
+        - name: OrderType
+          in: formData
+          required: false
+          type: string
+        - name: ToDate
+          in: formData
+          required: true
+          type: string
+        - name: UID
+          in: formData
+          required: false
+          type: string
+      tags:
+        - Orders
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/GetOrdersResponse'
+  /Vitals/GetFlowsheetData:
+    post:
+      summary: Get flowsheet data
+      parameters:
+        - name: CalledBy
+          in: formData
+          required: true
+          type: string
+        - name: Department
+          in: formData
+          required: false
+          type: string
+        - name: Facility
+          in: formData
+          required: false
+          type: string
+        - name: Field
+          in: formData
+          required: false
+          type: string
+        - name: Flowsheet
+          in: formData
+          required: false
+          type: string
+        - name: FromDate
+          in: formData
+          required: false
+          type: string
+        - name: ProviderId
+          in: formData
+          required: false
+          type: string
+        - name: ServiceName
+          in: formData
+          required: false
+          type: string
+        - name: ToDate
+          in: formData
+          required: false
+          type: string
+        - name: UID
+          in: formData
+          required: false
+          type: string
+      tags:
+        - Vitals
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/GetFlowsheetDataResponse'
 definitions:
+  Medication:
+    type: object
+    properties:
+      ClientGUID:
+        type: string
+      ChartGUID:
+        type: string
+      ClientVisitGUID:
+        type: string
+      Facility:
+        type: string
+      VisitType:
+        type: string
+      CareLevelCode:
+        type: string
+      Service:
+        type: string
+      UID:
+        type: string
+      MRN:
+        type: string
+      VisitIDCode:
+        type: string
+      AdmitDtm:
+        type: string
+      DischargeDtm:
+        type: string
+      CurrentLocation:
+        type: string
+      OrderingLocation:
+        type: string
+      OrderName:
+        type: string
+      OrderedDose:
+        type: string
+      OrderEnteredDtm:
+        type: string
+      OrderStartDtm:
+        type: string
+      OrderStopDtm:
+        type: string
+      OrderStatus:
+        type: string
+      OrderGUID:
+        type: string
+      OrderTaskOccurrenceGUID:
+        type: string
+      PerformedProviderGUID:
+        type: string
+      AdminID:
+        type: string
+      TaskDtm:
+        type: string
+      TaskStatusCode:
+        type: string
+      Route:
+        type: string
+      TaskDose:
+        type: string
+      TaskReason:
+        type: string
+      TaskComment:
+        type: string
+      PerformedRole:
+        type: string
+      RateAmount:
+        type: string
+      RateUOM:
+        type: string
   Demographic:
+    type: object
+    properties:
+      AdmitHeightM:
+        type: string
+      AdmitReason:
+        type: string
+      AdmitSourceCode:
+        type: string
+      AdmitSourceName:
+        type: string
+      AdmitType:
+        type: string
+      AdmitWeightKG:
+        type: string
+      AdmittingName:
+        type: string
+      AdmittingPennID:
+        type: string
+      AttendingName:
+        type: string
+      AttendingPennID:
+        type: string
+      CSN:
+        type: string
+      CentralLineCount:
+        type: string
+      CentralLineDetail:
+        type: string
+      CoveringCellNumber:
+        type: string
+      CoveringName:
+        type: string
+      CoveringNurseCellNumber:
+        type: string
+      CoveringNurseName:
+        type: string
+      CoveringNursePagerNumber:
+        type: string
+      CoveringNursePennID:
+        type: string
+      CoveringPagerNumber:
+        type: string
+      CoveringPennID:
+        type: string
+      DOB:
+        type: string
+      EpicHAR:
+        type: string
+      Facility:
+        type: string
+      FirstName:
+        type: string
+      FoleyDate:
+        type: string
+      FoleyKBCDtime:
+        type: string
+      FoleyLatestIndicationDtm:
+        type: string
+      FoleyOrderDtime:
+        type: string
+      FoleyPendingRemoval:
+        type: string
+      FoleyReason:
+        type: string
+      FoleyRemovalGuidance:
+        type: string
+      HUPMRN:
+        type: string
+      HospitalService:
+        type: string
+      LastName:
+        type: string
+      LastUpdateDtime:
+        type: string
+      Loc_Dept:
+        type: string
+      Loc_Room_bed:
+        type: string
+      MVPatientID:
+        type: string
+      MiddleName:
+        type: string
+      NameSuffix:
+        type: string
+      Nav_Location:
+        type: string
+      Nav_Room_bed:
+        type: string
+      PAHMRN:
+        type: string
+      PCPName:
+        type: string
+      PCPPennID:
+        type: string
+      PMCMRN:
+        type: string
+      PrimaryCellNumber:
+        type: string
+      PrimaryName:
+        type: string
+      PrimaryPagerNumber:
+        type: string
+      PrimaryPennID:
+        type: string
+      Race:
+        type: string
+      ReferringName:
+        type: string
+      ReferringPennID:
+        type: string
+      ServiceName:
+        type: string
+      Sex:
+        type: string
+      UID:
+        type: string
+      VisitStartDTime:
+        type: string
+      maritalStatus:
+        type: string
+  Lab:
+    type: object
+    properties:
+      UID:
+        type: string
+      MVServiceTypeID:
+        type: string
+      CernerServiceTypeID:
+        type: string
+      ServiceTypeMnemonic:
+        type: string
+      PlacerOrderID:
+        type: string
+      CernerOrderID:
+        type: string
+      AccessionNumber:
+        type: string
+      DiagServiceID:
+        type: string
+      OrderDate:
+        type: string
+      DrawnDate:
+        type: string
+      OrderLastUpdate:
+        type: string
+      EffectiveOrderDtime:
+        type: string
+      EffectiveStatus:
+        type: string
+      CernerObsTypeID:
+        type: string
+      ObsTypeMnemonic:
+        type: string
+      UnitsID:
+        type: string
+      Units:
+        type: string
+      RangeID:
+        type: string
+      Range:
+        type: string
+      AbnormalFlag:
+        type: string
+      ResultStatus:
+        type: string
+      Value:
+        type: string
+      Corrected:
+        type: string
+      ResultDate:
+        type: string
+      ObsLastUpdate:
+        type: string
+  Order:
+    type: object
+    properties:
+      ClientGUID:
+        type: string
+      ChartGUID:
+        type: string
+      ClientVisitGUID:
+        type: string
+      Facility:
+        type: string
+      VisitType:
+        type: string
+      CareLevelCode:
+        type: string
+      Service:
+        type: string
+      UID:
+        type: string
+      MRN:
+        type: string
+      VisitIDCode:
+        type: string
+      AdmitDtm:
+        type: string
+      DischargeDtm:
+        type: string
+      CurrentLocation:
+        type: string
+      OrderingLocation:
+        type: string
+      OrderName:
+        type: string
+      OrderSetName:
+        type: string
+      OrderType:
+        type: string
+      OrderReviewCategory:
+        type: string
+      OrderPriorityCode:
+        type: string
+      OrderedDose:
+        type: string
+      OrderEnteredDtm:
+        type: string
+      OrderStartDtm:
+        type: string
+      OrderStopDtm:
+        type: string
+      OrderStatus:
+        type: string
+      OrderGUID:
+        type: string
+      OrderingProviderGUID:
+        type: string
+      OrderingProvider:
+        type: string
+      OrderRoleType:
+        type: string
+      Frequency:
+        type: string
+      MDCollect:
+        type: string
+      RNCollect:
+        type: string
+      PhlebCollect:
+        type: string
+  Flowsheet:
+    type: object
+    properties:
+      MVPatientID:
+        type: string
+      UID:
+        type: string
+      AccountNumber:
+        type: string
+      Flowsheet:
+        type: string
+      FlowsheetID:
+        type: string
+      FlowsheetDateTime:
+        type: string
+      MVComponentID:
+        type: string
+      ObservationDateTime:
+        type: string
+      Field:
+        type: string
+      Value:
+        type: string
+      Units:
+        type: string
+      Range:
+        type: string
+      AbnormalFlag:
+        type: string
+  GetDemographicsResponse:
     type: object
     properties:
       data:
         type: array
         items:
-          type: object
-          properties:
-            AdmitHeightM:
-              type: string
-            AdmitReason:
-              type: string
-            AdmitSourceCode:
-              type: string
-            AdmitSourceName:
-              type: string
-            AdmitType:
-              type: string
-            AdmitWeightKG:
-              type: string
-            AdmittingName:
-              type: string
-            AdmittingPennID:
-              type: string
-            AttendingName:
-              type: string
-            AttendingPennID:
-              type: string
-            CSN:
-              type: string
-            CentralLineCount:
-              type: string
-            CentralLineDetail:
-              type: string
-            CoveringCellNumber:
-              type: string
-            CoveringName:
-              type: string
-            CoveringNurseCellNumber:
-              type: string
-            CoveringNurseName:
-              type: string
-            CoveringNursePagerNumber:
-              type: string
-            CoveringNursePennID:
-              type: string
-            CoveringPagerNumber:
-              type: string
-            CoveringPennID:
-              type: string
-            DOB:
-              type: string
-            EpicHAR:
-              type: string
-            Facility:
-              type: string
-            FirstName:
-              type: string
-            FoleyDate:
-              type: string
-            FoleyKBCDtime:
-              type: string
-            FoleyLatestIndicationDtm:
-              type: string
-            FoleyOrderDtime:
-              type: string
-            FoleyPendingRemoval:
-              type: string
-            FoleyReason:
-              type: string
-            FoleyRemovalGuidance:
-              type: string
-            HUPMRN:
-              type: string
-            HospitalService:
-              type: string
-            LastName:
-              type: string
-            LastUpdateDtime:
-              type: string
-            Loc_Dept:
-              type: string
-            Loc_Room_bed:
-              type: string
-            MVPatientID:
-              type: string
-            MiddleName:
-              type: string
-            NameSuffix:
-              type: string
-            Nav_Location:
-              type: string
-            Nav_Room_bed:
-              type: string
-            PAHMRN:
-              type: string
-            PCPName:
-              type: string
-            PCPPennID:
-              type: string
-            PMCMRN:
-              type: string
-            PrimaryCellNumber:
-              type: string
-            PrimaryName:
-              type: string
-            PrimaryPagerNumber:
-              type: string
-            PrimaryPennID:
-              type: string
-            Race:
-              type: string
-            ReferringName:
-              type: string
-            ReferringPennID:
-              type: string
-            ServiceName:
-              type: string
-            Sex:
-              type: string
-            UID:
-              type: string
-            VisitStartDTime:
-              type: string
-            maritalStatus:
-              type: string
+          $ref: '#/definitions/Demographic'
+  GetMedTasksResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Medication'
+  GetLabsResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Lab'
+  GetOrdersResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Order'
+  GetFlowsheetDataResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Flowsheet'
