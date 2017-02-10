@@ -1,0 +1,722 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Signals API",
+        "description": "Signals REST API",
+        "version": "2.0.0"
+    },
+    "schemes": [
+        "https"
+    ],
+    "basePath": "/signals/2.0.0/api",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/event": {
+            "get": {
+                "description": "Gets `Event` objects.\n",
+                "parameters": [
+                    {
+                        "name": "last_id",
+                        "in": "query",
+                        "description": "Last event id",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/EventResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Admit": {
+            "type": "string",
+            "enum": [
+                "Urgent admission",
+                "Emergency room admission",
+                "Emergency admission",
+                "Newborn",
+                "Routine elective admission",
+                "Pregnancy",
+                "None"
+            ]
+        },
+        "AdmitSource": {
+            "type": "string",
+            "enum": [
+                "FIXME"
+            ]
+        },
+        "AdmittingService": {
+            "type": "string",
+            "enum": [
+                "FIXME"
+            ]
+        },
+        "HospitalService": {
+            "type": "string",
+            "enum": [
+                "CRC",
+                "CRS",
+                "CSU",
+                "CVM",
+                "EMD",
+                "ESS",
+                "FAM",
+                "GAS",
+                "GIS",
+                "GYN",
+                "GYO",
+                "HSP",
+                "IFD",
+                "LTC",
+                "MED",
+                "NEW",
+                "NIC",
+                "NSU",
+                "NUR",
+                "OBS",
+                "OHN",
+                "ONC",
+                "ONL",
+                "ONS",
+                "ORT",
+                "OTO",
+                "OUT",
+                "PLS",
+                "PMR",
+                "PSY",
+                "PUL",
+                "SON",
+                "SUR",
+                "TRA",
+                "TSU",
+                "URO",
+                "VAS"
+            ]
+        },
+        "Location": {
+            "type": "object",
+            "properties": {
+                "facility": {
+                    "$ref": "#/definitions/LocationFacility"
+                },
+                "department": {
+                    "$ref": "#/definitions/LocationDepartment"
+                },
+                "room": {
+                    "$ref": "#/definitions/LocationRoom"
+                },
+                "bed": {
+                    "$ref": "#/definitions/LocationBed"
+                }
+            }
+        },
+        "LocationFacility": {
+            "type": "string",
+            "enum": [
+                "HUO",
+                "PAH",
+                "PMC"
+            ]
+        },
+        "LocationDepartment": {
+            "type": "string",
+            "enum": [
+                "CCU",
+                "ERIP",
+                "CP5S",
+                "None",
+                "MICB",
+                "MICA",
+                "OR8",
+                "HVCB",
+                "D6S",
+                "R6",
+                "SP4",
+                "R9",
+                "SP6",
+                "PR5",
+                "PR4",
+                "XIR",
+                "PR6",
+                "SNF",
+                "PACU",
+                "PACP",
+                "EDIP",
+                "APU",
+                "SEI3",
+                "TRAN",
+                "RIT6",
+                "RIT5",
+                "RIT4",
+                "RIT3",
+                "EMU",
+                "DEL",
+                "ICN",
+                "W3A",
+                "W3B",
+                "SH7",
+                "LDN",
+                "CP5E",
+                "SICA",
+                "SICB",
+                "SIRB",
+                "SIRA",
+                "ED",
+                "FP11",
+                "FP12",
+                "FP14",
+                "CR6",
+                "CR7",
+                "CR4",
+                "CR5",
+                "ORB",
+                "PSY",
+                "CP3E",
+                "RP2D",
+                "S9",
+                "S8",
+                "RP2A",
+                "RP2B",
+                "RP2C",
+                "GWOU",
+                "S7",
+                "REH",
+                "CICU",
+                "HOLD",
+                "S12",
+                "S11",
+                "S10",
+                "MCA4",
+                "CP3S",
+                "CP4S",
+                "R6NE",
+                "TSCB",
+                "TSCA",
+                "HVCA",
+                "MCB4",
+                "CP4E",
+                "ORC",
+                "PC5B",
+                "PN5",
+                "PN4",
+                "PN6",
+                "ERM",
+                "SINB",
+                "SINA",
+                "LD",
+                "INCU",
+                "TU",
+                "OBS3",
+                "RP1",
+                "RP3",
+                "RP4",
+                "RP7",
+                "RP6",
+                "NS8",
+                "W4A",
+                "W4B",
+                "SH3",
+                "ISRB",
+                "ISRA",
+                "CATH",
+                "PR7",
+                "D1"
+            ]
+        },
+        "LocationRoom": {
+            "type": "string",
+            "enum": [
+                "FIXME"
+            ]
+        },
+        "LocationBed": {
+            "type": "string",
+            "enum": [
+                "FIXME"
+            ]
+        },
+        "Name": {
+            "type": "object",
+            "properties": {
+                "prefix": {
+                    "type": "string"
+                },
+                "first": {
+                    "type": "string"
+                },
+                "middle": {
+                    "type": "string"
+                },
+                "last": {
+                    "type": "string"
+                },
+                "suffix": {
+                    "type": "string"
+                }
+            }
+        },
+        "MaritalStatus": {
+            "type": "string",
+            "enum": [
+                "single",
+                "married",
+                "divorced",
+                "separated"
+            ]
+        },
+        "ObservationPatientEventStatus": {
+            "type": "string",
+            "enum": [
+                "corrected",
+                "final",
+                "delete",
+                "nan"
+            ]
+        },
+        "Race": {
+            "type": "string",
+            "enum": [
+                "white"
+            ]
+        },
+        "Sex": {
+            "type": "string",
+            "enum": [
+                "female",
+                "male"
+            ]
+        },
+        "Units": {
+            "type": "string",
+            "enum": [
+                "parsecs",
+                "meters",
+                "kilograms"
+            ]
+        },
+        "EventResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Event"
+                    }
+                }
+            }
+        },
+        "Event": {
+            "type": "object",
+            "discriminator": "class_",
+            "properties": {
+                "signals": {
+                    "type": "string"
+                },
+                "uuid": {
+                    "type": "string"
+                },
+                "class_": {
+                    "type": "string"
+                },
+                "provenance": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "xact_on": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "valid_on": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "PatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Event"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "patient_id": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "CareteamPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/PatientEvent"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "$ref": "#/definitions/Name"
+                        },
+                        "careteam_id": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "AdmittingCareteamPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/CareteamPatientEvent"
+                },
+                {
+                    "type": "object"
+                }
+            ]
+        },
+        "AttendingCareteamPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/CareteamPatientEvent"
+                },
+                {
+                    "type": "object"
+                }
+            ]
+        },
+        "CoveringCareteamPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/CareteamPatientEvent"
+                },
+                {
+                    "type": "object"
+                }
+            ]
+        },
+        "CoveringNurseCareteamPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/CareteamPatientEvent"
+                },
+                {
+                    "type": "object"
+                }
+            ]
+        },
+        "PrimaryCareteamPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/CareteamPatientEvent"
+                },
+                {
+                    "type": "object"
+                }
+            ]
+        },
+        "ReferringCareteamPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/CareteamPatientEvent"
+                },
+                {
+                    "type": "object"
+                }
+            ]
+        },
+        "LocationPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/PatientEvent"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "location": {
+                            "$ref": "#/definitions/Location"
+                        }
+                    }
+                }
+            ]
+        },
+        "ObservationPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/PatientEvent"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "$ref": "#/definitions/ObservationPatientEventStatus"
+                        }
+                    }
+                }
+            ]
+        },
+        "DemographicPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/PatientEvent"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "$ref": "#/definitions/Name"
+                        },
+                        "marital_status": {
+                            "$ref": "#/definitions/MaritalStatus"
+                        },
+                        "race": {
+                            "$ref": "#/definitions/Race"
+                        },
+                        "sex": {
+                            "$ref": "#/definitions/Sex"
+                        },
+                        "dob": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    }
+                }
+            ]
+        },
+        "EncounterPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/PatientEvent"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "encounter_id": {
+                            "type": "integer"
+                        },
+                        "admit_reason": {
+                            "type": "string"
+                        },
+                        "hospital_service": {
+                            "$ref": "#/definitions/HospitalService"
+                        },
+                        "admit_source": {
+                            "$ref": "#/definitions/AdmitSource"
+                        },
+                        "admit": {
+                            "$ref": "#/definitions/Admit"
+                        },
+                        "admitting_service": {
+                            "$ref": "#/definitions/AdmittingService"
+                        }
+                    }
+                }
+            ]
+        },
+        "HeightObservationPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ObservationPatientEvent"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "number",
+                            "format": "double"
+                        },
+                        "units": {
+                            "$ref": "#/definitions/Units"
+                        }
+                    }
+                }
+            ]
+        },
+        "WeightObservationPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ObservationPatientEvent"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "number",
+                            "format": "double"
+                        },
+                        "units": {
+                            "$ref": "#/definitions/Units"
+                        }
+                    }
+                }
+            ]
+        },
+        "UntypedObservationPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ObservationPatientEvent"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "format": "binary"
+                        },
+                        "units": {
+                            "$ref": "#/definitions/Units"
+                        }
+                    }
+                }
+            ]
+        },
+        "IntegerObservationPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ObservationPatientEvent"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "units": {
+                            "$ref": "#/definitions/Units"
+                        }
+                    }
+                }
+            ]
+        },
+        "FloatObservationPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ObservationPatientEvent"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "number",
+                            "format": "double"
+                        },
+                        "units": {
+                            "$ref": "#/definitions/Units"
+                        }
+                    }
+                }
+            ]
+        },
+        "StringObservationPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ObservationPatientEvent"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "BytesObservationPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ObservationPatientEvent"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "format": "bytes"
+                        }
+                    }
+                }
+            ]
+        },
+        "BinaryObservationPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ObservationPatientEvent"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "format": "binary"
+                        }
+                    }
+                }
+            ]
+        },
+        "BooleanObservationPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ObservationPatientEvent"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            ]
+        },
+        "DateObservationPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ObservationPatientEvent"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    }
+                }
+            ]
+        },
+        "DateTimeObservationPatientEvent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ObservationPatientEvent"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
