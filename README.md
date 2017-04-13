@@ -1,4 +1,4 @@
-[![Travis](https://img.shields.io/travis/pennsignals/swagger-specifications.svg?style=flat-square)](https://travis-ci.org/pennsignals/swagger-specifications)
+[![Travis](https://img.shields.io/travis/pennsignals/swagger-specifications.svg?style=flat-square)](https://travis-ci.org/pennsignals/swagger-specifications) [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg?style=flat-square)](https://github.com/sindresorhus/xo)
 
 ## Introduction
 

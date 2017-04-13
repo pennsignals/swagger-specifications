@@ -4,7 +4,7 @@
   "description": "A collection of Swagger specifications utilized by Penn Signals",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "xo"
   },
   "repository": {
     "type": "git",
@@ -17,10 +17,14 @@
   },
   "homepage": "https://github.com/pennsignals/swagger-specifications#readme",
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "xo": "^0.18.1"
   },
   "dependencies": {
     "globby": "^6.1.0",
     "swagger-parser": "^3.4.1"
+  },
+  "xo": {
+    "space": true
   }
 }
